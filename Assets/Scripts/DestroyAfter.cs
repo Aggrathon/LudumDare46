@@ -5,9 +5,13 @@ using UnityEngine;
 public class DestroyAfter : MonoBehaviour
 {
     public float time = 5f;
+    public bool disable = false;
 
-    void Start()
+    private void OnEnable()
     {
-        StartCoroutine(Utils.Delay(()=> Destroy(gameObject), time));
+        if (disable)
+            StartCoroutine(Utils.Delay(()=> gameObject.SetActive(false), time));
+        else
+            StartCoroutine(Utils.Delay(()=> Destroy(gameObject), time));
     }
 }

@@ -10,6 +10,8 @@ public class Blocker : MonoBehaviour
     public float moveHeight = 0.3f;
     public float moveSpeed = 2f;
 
+    public AudioClip stepSound;
+
     PathGrid grid;
     public int i { get; protected set; }
     public int j { get; protected set; }
@@ -75,10 +77,14 @@ public class Blocker : MonoBehaviour
         Vector3 vel = Vector3.zero;
         Vector3 prev = transform.position;
         int i = 0;
+        if (moves.Count > 0 && Vector3.SqrMagnitude(prev - moves[i]) < 0.01f)
+            i++;
         while (i < moves.Count) {
             Vector3 move = moves[i];
             float d2 = Vector3.SqrMagnitude(transform.position - move);
             if (d2 < 0.01f) {
+                if (stepSound != null)
+                    FXManager.active.PlayAudio(move, stepSound);
                 prev = moves[i];
                 i++;
                 continue;

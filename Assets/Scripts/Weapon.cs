@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
     public int shots = 1;
     public int damage = 2;
 
-    public float variance = 0f;
+    [Range(0f, 0.1f)] public float variance = 0f;
 
     public float attackHeight = 1.5f;
     public float attackStart = 0.5f;
@@ -189,7 +189,8 @@ public class Weapon : MonoBehaviour
                         h = hit.rigidbody?.GetComponent<Health>();
                     else
                         hit.point = ray.GetPoint(range);
-                    //TODO: shooting FX from point to hit.point
+                    FXManager.active.Trace(point, hit.point);
+                    //TODO: shooting sound
                     yield return new WaitForSeconds(0.1f);
                     if (h != null)
                         h.health -= damage;

@@ -109,6 +109,7 @@ MonoBehaviour:
   variance: 0
   attackHeight: 1.5
   attackStart: 0.45
+  attackSound: {fileID: 8300000, guid: d30444e47dc6df54eabaf77140ea9a54, type: 3}
 --- !u!54 &3113940760747693854
 Rigidbody:
   m_ObjectHideFlags: 0

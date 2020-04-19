@@ -25,10 +25,12 @@ public class Weapon : MonoBehaviour
     public int shots = 1;
     public int damage = 2;
 
-    [Range(0f, 0.1f)] public float variance = 0f;
+    [Range(0f, 0.15f)] public float variance = 0f;
 
     public float attackHeight = 1.5f;
     public float attackStart = 0.5f;
+
+    public AudioClip attackSound;
 
     private void Start() {
         ammo = maxAmmo;
@@ -126,6 +128,7 @@ public class Weapon : MonoBehaviour
                 break;
             case Type.Blunderbuss:
                 if (ammo > 0 && index == 1) {
+                    CameraController.active.ActivateShoulder();
                     StartCoroutine(SelectAttackTarget(type, callback));
                 } else {
                     ammo = maxAmmo;
@@ -172,37 +175,16 @@ public class Weapon : MonoBehaviour
                 Debug.LogError("This should not happen!");
                 break;
             case Type.Revolver:
-                Utils.print("Attacked", target);
                 for (int i = 0; i < shots; i++)
-                {
-                    ammo--;
-                    var point = transform.position;
-                    point.y += attackHeight;
-                    var dir = target - point;
-                    dir.Normalize();
-                    point += dir * attackStart;
-                    dir += UnityEngine.Random.insideUnitSphere * variance;
-                    RaycastHit hit;
-                    Ray ray = new Ray(point, dir);
-                    Health h = null;
-                    if (Physics.Raycast(ray, out hit, range)) 
-                        h = hit.rigidbody?.GetComponent<Health>();
-                    else
-                        hit.point = ray.GetPoint(range);
-                    FXManager.active.Trace(point, hit.point);
-                    //TODO: shooting sound
-                    yield return new WaitForSeconds(0.1f);
-                    if (h != null)
-                        h.health -= damage;
-                    yield return new WaitForSeconds(0.3f / shots);
-                }
+                    yield return ShootGun(target, variance * Mathf.Sqrt(shots), true, 0.1f + 0.3f / shots);
                 break;
             case Type.Blunderbuss:
-                Debug.LogError("Blunderbuss not implemented");
+                for (int i = 0; i < shots; i++)
+                    yield return ShootGun(target, variance, i==0, i == shots -1 ? 0.4f : 0f);
                 break;
             case Type.Rifle:
             case Type.Bow:
-                Debug.LogError("Rifle not implemented");
+                yield return ShootGun(target, variance, true, 0.4f);
                 break;
             case Type.Axe:
             case Type.Knife:
@@ -216,8 +198,39 @@ public class Weapon : MonoBehaviour
                 Debug.LogError("Unknown Weapon!");
                 break;
         }
+        GameManager.activeGM.NotifyCombat();
         //TODO: Implement more weapons for players
         callback(2);
+    }
+
+    IEnumerator ShootGun(Vector3 target, float variance, bool sound, float wait) {
+        ammo--;
+        var point = transform.position;
+        point.y += attackHeight;
+        var dir = target - point;
+        dir.Normalize();
+        point += dir * attackStart;
+        dir += UnityEngine.Random.insideUnitSphere * variance;
+        RaycastHit hit;
+        Ray ray = new Ray(point, dir);
+        Health h = null;
+        if (Physics.Raycast(ray, out hit, range)) 
+            h = hit.rigidbody?.GetComponent<Health>();
+        else
+            hit.point = ray.GetPoint(range);
+        FXManager.active.Trace(point, hit.point);
+        if (sound && attackSound != null)
+            FXManager.active.PlayAudio(point, attackSound);
+        if (h != null && wait > 0f) {
+            var wfs = new WaitForSeconds(wait * 0.5f);
+            yield return wfs;
+            h.health -= damage;
+            yield return wfs;
+        } else if (h != null) {
+            h.health -= damage;
+        } else if (wait > 0f) {
+            yield return new WaitForSeconds(wait);
+        }
     }
 
     public void CancelAction() {

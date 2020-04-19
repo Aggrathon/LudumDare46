@@ -107,12 +107,16 @@ public class GameManager : MonoBehaviour
     public void NotifyLost(Unit.Team team) {
         if (team == Unit.Team.sheriff) {
             state = State.Stopped;
-            winScreen.SetActive(true);
-            StopAllCoroutines();
+            if (winScreen) {
+                winScreen.SetActive(true);
+                StopAllCoroutines();
+            }
         } else if (team == Unit.Team.bandit || team == Unit.Team.leader) {
             state = State.Stopped;
-            looseScreen.SetActive(true);
-            StopAllCoroutines();
+            if (looseScreen) {
+                looseScreen.SetActive(true);
+                StopAllCoroutines();
+            }
         }
     }
 }

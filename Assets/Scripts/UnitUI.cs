@@ -84,7 +84,7 @@ public class UnitUI : MonoBehaviour
     void ShowMoveGrid() {
         HideAimHint();
         unit.weapon.CancelAction();
-        CameraController.active.ActivateTop();
+        CameraController.active.FocusOver(unit.transform);
         var graph = PathGrid.activeGrid.GetReachable(unit.blocker.i, unit.blocker.j, unit.movement);
         var grid = PathGrid.activeGrid;
         while (moveButtons.Count < graph.Count)

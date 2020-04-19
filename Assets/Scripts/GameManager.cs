@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject winScreen;
     public GameObject looseScreen;
+    public GameObject looseScreen2;
     public GameObject spottedScreen;
     public TurnOrder turnOrder;
 
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void RegisterUnit(Unit unit) {
         if (state == State.Setup && unit.team == Unit.Team.bandit) {
-            state = State.PreCombat;
+            state = State.Starting;
             StartCoroutine(StateMachine());
         }
         unit.priority = Random.Range(1, unit.speed);
@@ -52,11 +53,19 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerable<Unit>EnumerateEnemies(Unit.Team team) {
-        if (team == Unit.Team.neutral)
-            yield break;
-        foreach(var u in units)
-            if (team != u.team)
-                yield return u;
+        switch(team) {
+            case Unit.Team.sheriff:
+                foreach(var u in units)
+                    if (u.team == Unit.Team.bandit || u.team == Unit.Team.leader)
+                        yield return u;
+                break;
+            case Unit.Team.bandit:
+            case Unit.Team.leader:
+                foreach(var u in units)
+                    if (u.team == Unit.Team.sheriff)
+                        yield return u;
+                break;
+        }
     }
 
     private Unit GetNextUnit() {
@@ -80,7 +89,8 @@ public class GameManager : MonoBehaviour
             switch (state)
             {
                 case State.Starting:
-                    yield return new WaitForSeconds(1f);
+                    CameraController.active.FocusTop();
+                    yield return new WaitForSeconds(1.9f);
                     state = State.PreCombat;
                     break;
                 case State.PreCombat:
@@ -111,10 +121,16 @@ public class GameManager : MonoBehaviour
                 winScreen.SetActive(true);
                 StopAllCoroutines();
             }
-        } else if (team == Unit.Team.bandit || team == Unit.Team.leader) {
+        } else if (team == Unit.Team.bandit) {
             state = State.Stopped;
             if (looseScreen) {
                 looseScreen.SetActive(true);
+                StopAllCoroutines();
+            }
+        } else if (team == Unit.Team.leader) {
+            state = State.Stopped;
+            if (looseScreen2) {
+                looseScreen2.SetActive(true);
                 StopAllCoroutines();
             }
         }

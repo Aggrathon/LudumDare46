@@ -25,6 +25,11 @@ public class TurnOrder : MonoBehaviour
             var trans = modelImage.parent.GetChild(i);
             trans.GetChild(0).GetComponent<Image>().color = order[i].color;
             trans.GetChild(1).GetComponent<TextMeshProUGUI>().text = order[i].name;
+            trans.gameObject.SetActive(true);
+        }
+        for (int i = order.Count; i < modelImage.parent.childCount; i++)
+        {
+            modelImage.parent.GetChild(i).gameObject.SetActive(false);
         }
         gameObject.SetActive(true);
     }

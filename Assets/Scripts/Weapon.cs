@@ -36,6 +36,41 @@ public class Weapon : MonoBehaviour
         ammo = maxAmmo;
     }
 
+    public void AppendDescription(System.Text.StringBuilder sb) {
+        switch(type) {
+            case Type.None:
+                sb.Append("Hands are tied!");
+                break;
+            case Type.Revolver:
+                sb.Append("Revolver with ").Append(maxAmmo).Append(" chambers");
+                break;
+            case Type.Blunderbuss:
+                sb.Append("Single barreled blunderbuss");
+                break;
+            case Type.Rifle:
+                sb.Append("Bolt-action rifle");
+                break;
+            case Type.Axe:
+                sb.Append("Axe");
+                break;
+            case Type.Knife:
+                sb.Append("Two knives");
+                break;
+            case Type.Melee:
+                sb.Append("Brawler, fists and feet");
+                break;
+            case Type.Bow:
+                sb.Append("Bow and arrows");
+                break;
+            case Type.Dynamite:
+                sb.Append(ammo).Append(" sticks of dynamite");
+                break;
+            default:
+                sb.Append("Unknown Weapon!");
+                break;
+        }
+    }
+
     public void AppendStatus(System.Text.StringBuilder sb) {
         switch(type) {
             case Type.None:
@@ -122,13 +157,13 @@ public class Weapon : MonoBehaviour
                     callback(1);
                 } else {
                     shots = index;
-                    CameraController.active.ActivateShoulder();
+                    CameraController.active.FocusShoulder(transform);
                     StartCoroutine(SelectAttackTarget(type, callback));
                 }
                 break;
             case Type.Blunderbuss:
                 if (ammo > 0 && index == 1) {
-                    CameraController.active.ActivateShoulder();
+                    CameraController.active.FocusShoulder(transform);
                     StartCoroutine(SelectAttackTarget(type, callback));
                 } else {
                     ammo = maxAmmo;
@@ -137,7 +172,7 @@ public class Weapon : MonoBehaviour
                 break;
             case Type.Rifle:
             case Type.Bow:
-                CameraController.active.ActivateShoulder();
+                CameraController.active.FocusShoulder(transform);
                 StartCoroutine(SelectAttackTarget(type, callback));
                 break;
             case Type.Melee:
@@ -188,6 +223,7 @@ public class Weapon : MonoBehaviour
             case Type.Blunderbuss:
                 for (int i = 0; i < shots; i++)
                     yield return ShootGun(target, variance, i==0, i == shots -1 ? 0.4f : 0f);
+                ammo = 0;
                 break;
             case Type.Rifle:
             case Type.Bow:

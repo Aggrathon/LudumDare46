@@ -50,17 +50,20 @@ public class Unit : MonoBehaviour
     }
 
     public IEnumerator Act(bool inCombat) {
-        CameraController.active.FocusOn(transform);
         energy = actions;
         if (team == Team.bandit) {
+            CameraController.active.FocusOver(transform);
             UnitUI.active.Show(this);
             while (energy > 0)
                 yield return null;
             UnitUI.active.Hide();
             weapon.CancelAction();
         } else if (team == Team.sheriff) {
+            CameraController.active.FocusTop(transform);
             if (!inCombat) {
                 foreach(Unit u in GameManager.activeGM.EnumerateEnemies(team)) {
+                    if (u.team == Team.leader)
+                        continue;
                     RaycastHit hit;
                     Vector3 dir = ( u.transform.position - transform.position).normalized;
                     if(Physics.Raycast(transform.position + dir * 0.5f + transform.up * 1.5f, dir, out hit, sight)) {
@@ -100,6 +103,8 @@ public class Unit : MonoBehaviour
                             en.transform.position,
                             en.approxHeight,
                             en.approxRadius);
+                        if (offVal > 0.3f)
+                            offVal = offVal * 0.75f + (1f - (float)en.health.health / (float)en.health.maxHealth) * 0.5f;
                         totalValue += defVal * (1f - aggresiveness) + offVal * aggresiveness;
                         if (offVal > secondValue) {
                             secondTarget = tmp;
@@ -121,7 +126,14 @@ public class Unit : MonoBehaviour
             }
         } else if (team == Team.leader) {
             //TODO: maybe start hanging at some point?
-            //TODO: maybe join the bandits at some point?
+            if (inCombat) {
+                CameraController.active.FocusOver(transform);
+                UnitUI.active.Show(this);
+                while (energy > 0)
+                    yield return null;
+                UnitUI.active.Hide();
+                weapon.CancelAction();
+            }
         }
     }
 

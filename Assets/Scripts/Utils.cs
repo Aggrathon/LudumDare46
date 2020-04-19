@@ -13,33 +13,38 @@ public static class Utils {
         action();
     }
 
-    public static (bool, Vector3) TryShootAt(Vector3 shooter, float shooterHeight, float shooterRadius, float shooterRange, Vector3 target, float targetHeight, float targetRadius) {
-        var dir = target - shooter;
-        if (dir.sqrMagnitude > shooterRange*shooterRange) {
-            return (false, target);
+    public static (float, Vector3) TryShootAt(Unit shooter, Unit target, Vector3 shooterPos, Vector3 targetPos, int samples = 10) {
+        var dir = targetPos - shooterPos;
+        if (dir.sqrMagnitude > shooter.weapon.range * shooter.weapon.range) {
+            return (0f, targetPos);
         }
-        shooter.y += shooterHeight;
-        target.y += UnityEngine.Random.Range(0f, targetHeight);
-        target += UnityEngine.Random.Range(-targetRadius, targetRadius) * new Vector3(-dir.z, dir.x).normalized;
-        dir = shooter - target;
+        shooterPos.y += shooter.weapon.attackHeight;
+        var goal = targetPos + new Vector3(-dir.z, dir.x).normalized * UnityEngine.Random.Range(-target.approxRadius, target.approxRadius);
+        goal.y += UnityEngine.Random.Range(0f, target.approxHeight);
+        dir = goal - shooterPos;
         float dist = dir.magnitude;
-        if (dist > shooterRange)
-            return (false, target);
+        if (dist > shooter.weapon.range)
+            return (0f, goal);
         dir /= dist;
-        if (Physics.Raycast(target + dir * targetRadius, dir, dist - shooterRadius))
-            return (false, target);
-        return (true, target);
+        shooterPos += dir * shooter.weapon.attackStart;
+        if (Physics.Raycast(shooterPos, dir, dist - shooter.approxRadius - shooter.weapon.attackStart))
+            return (0f, goal);
+        int hits = 0;
+        for (int i = 0; i < samples; i++)
+        {
+            var dir2 = dir + UnityEngine.Random.insideUnitSphere * shooter.weapon.variance;
+            var end = new Ray(shooterPos, dir).GetPoint(dist - shooter.weapon.attackStart);
+            if (end.y >= 0f && end.y <= target.approxHeight)
+                if (Mathf.Pow(end.x - targetPos.x, 2f) + Mathf.Pow(end.z - targetPos.z, 2f) < target.approxRadius * target.approxRadius)
+                    hits++;
+        }
+        return ((float)hits / (float)samples, goal);
     }
 
-    public static (float, Vector3) Danger(Vector3 shooter, float shooterHeight, float shooterRadius, float shooterRange, Vector3 target, float targetHeight, float targetRadius, int rays = 20) {
-        (bool a, Vector3 hit) = TryShootAt(shooter, shooterHeight, shooterRadius, shooterRange, target, targetHeight, targetRadius);
-        int hits = a? 1: 0;
+    public static (float, Vector3) Danger(Unit shooter, Unit target, Vector3 shooterPos, Vector3 targetPos, int rays = 20) {
+        (float hits, Vector3 hit) = TryShootAt(shooter, target, shooterPos, targetPos);
         for (int i = 1; i < rays; i++)
-        {
-            if (TryShootAt(shooter, shooterHeight, shooterRadius, shooterRange, target, targetHeight, targetRadius).Item1) {
-                hits++;
-            }
-        }
-        return ((float)hits / (float)rays, hit);
+            hits += TryShootAt(shooter, target, shooterPos, targetPos).Item1;
+        return (hits / (float)rays, hit);
     }
 }

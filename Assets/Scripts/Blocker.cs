@@ -16,7 +16,6 @@ public class Blocker : MonoBehaviour
     public int i { get; protected set; }
     public int j { get; protected set; }
     List<Vector3> moves;
-    Action callback;
     Rigidbody rb;
 
     private void OnEnable() {
@@ -56,8 +55,7 @@ public class Blocker : MonoBehaviour
             this.i = i;
             this.j = j;
             this.moves = moves;
-            this.callback = callback;
-            StartCoroutine(MoveAnimation());
+            StartCoroutine(MoveAnimation(callback));
             return true;
         } else {
             return false;
@@ -69,7 +67,7 @@ public class Blocker : MonoBehaviour
         return MoveAnimated(moves, i, j, callback);
     }
 
-    IEnumerator MoveAnimation() {
+    IEnumerator MoveAnimation(Action callback = null) {
         if (moves.Count == 0) {
             callback?.Invoke();
             yield break;
@@ -98,8 +96,8 @@ public class Blocker : MonoBehaviour
         }
         if (moves.Count > 0) {
             rb.MovePosition(moves[moves.Count - 1]);
-            callback?.Invoke();
         }
+        callback?.Invoke();
     }
 
     public bool MovePath(Dictionary<int, PathGrid.PathNode> graph, PathGrid.PathNode target, Action callback = null) {

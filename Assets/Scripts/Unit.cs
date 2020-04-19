@@ -87,22 +87,8 @@ public class Unit : MonoBehaviour
                     Vector3 target = PathGrid.activeGrid.IndexToVector(kv.Value.i, kv.Value.j);
                     float totalValue = 0f;
                     foreach(var en in GameManager.activeGM.EnumerateEnemies(team)) {
-                        float defVal = Utils.Danger(
-                            en.transform.position,
-                            en.weapon.attackHeight,
-                            en.weapon.attackStart,
-                            en.weapon.range,
-                            target,
-                            approxHeight,
-                            approxRadius).Item1;
-                        (float offVal, Vector3 tmp) = Utils.Danger(
-                            target,
-                            weapon.attackHeight,
-                            weapon.attackStart,
-                            weapon.range,
-                            en.transform.position,
-                            en.approxHeight,
-                            en.approxRadius);
+                        float defVal = Utils.Danger(en, this, en.transform.position, target).Item1;
+                        (float offVal, Vector3 tmp) = Utils.Danger(this, en, target, en.transform.position);
                         if (offVal > 0.3f)
                             offVal = offVal * 0.75f + (1f - (float)en.health.health / (float)en.health.maxHealth) * 0.5f;
                         totalValue += defVal * (1f - aggresiveness) + offVal * aggresiveness;
@@ -118,10 +104,12 @@ public class Unit : MonoBehaviour
                     }
                     yield return null;
                 }
-                energy = 1;
+                energy = 600;
                 blocker.MovePath(graph, bestNode, () => { this.energy = -1; });
-                while(energy > 0)
+                while(energy > 0) {
                     yield return null;
+                    energy--;
+                }
                 yield return weapon.AttackTarget(bestTarget, weapon.type);
             }
         } else if (team == Team.leader) {

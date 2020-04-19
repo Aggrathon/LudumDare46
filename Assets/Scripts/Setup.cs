@@ -10,11 +10,12 @@ public class Setup : MonoBehaviour
 
     public List<Unit> possibleBandits;
     public Transform infoPanel;
+    public AudioClip sound;
 
     private void Awake() {
         transform.GetChild(0).gameObject.SetActive(true);
     }
-    
+
     private void Start() {
         while (infoPanel.parent.childCount < possibleBandits.Count) {
             Instantiate(infoPanel, infoPanel.parent);
@@ -39,6 +40,8 @@ public class Setup : MonoBehaviour
                 possibleBandits[i].gameObject.SetActive(true);
         }
         gameObject.SetActive(false);
+        if (sound != null)
+            FXManager.active.PlayAudio(Vector3.zero, sound);
     }
 
 }

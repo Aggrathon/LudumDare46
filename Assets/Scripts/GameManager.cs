@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject looseScreen;
     public GameObject spottedScreen;
+    public TurnOrder turnOrder;
 
     private void OnEnable() {
         activeGM = this;
@@ -61,14 +62,10 @@ public class GameManager : MonoBehaviour
                 u.priority += minpri;
             }
             units[0].priority += units[0].speed;
-            UpdateTurnOrderVisual();
+            turnOrder.Show(units);
             return units[0];
         }
         return null;
-    }
-
-    private void UpdateTurnOrderVisual() {
-
     }
 
     private IEnumerator StateMachine() {
@@ -106,13 +103,17 @@ public class GameManager : MonoBehaviour
         if (gameObject == null)
             return;
         if (team == Unit.Team.sheriff) {
-            winScreen.SetActive(true);
             state = State.Stopped;
-            StopAllCoroutines();
+            if (winScreen) {
+                winScreen.SetActive(true);
+                StopAllCoroutines();
+            }
         } else if (team == Unit.Team.bandit || team == Unit.Team.leader) {
-            looseScreen.SetActive(true);
             state = State.Stopped;
-            StopAllCoroutines();
+            if (looseScreen) {
+                looseScreen.SetActive(true);
+                StopAllCoroutines();
+            }
         }
     }
 }

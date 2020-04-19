@@ -21,6 +21,9 @@ public class Unit : MonoBehaviour
     [Range(0f, 1f)] public float aggresiveness = 0.5f;
     public int actions = 2;
     public float sight = 10f;
+    public Color color = new Color(1f, 0.8f, 0.5f);
+
+    [SerializeField] Renderer[] coloredRenderers;
 
     [System.NonSerialized] public int energy;
     [System.NonSerialized] public int priority;
@@ -33,6 +36,8 @@ public class Unit : MonoBehaviour
         health = GetComponent<Health>();
         blocker = GetComponent<Blocker>();
         GameManager.activeGM.RegisterUnit(this);
+        foreach(var r in coloredRenderers)
+            r.material.color = color;
     }
 
     private void OnDisable() {

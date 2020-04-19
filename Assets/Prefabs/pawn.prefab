@@ -83,6 +83,10 @@ MonoBehaviour:
   aggresiveness: 0.5
   actions: 2
   sight: 10
+  color: {r: 1, g: 0.47317308, b: 0.2980392, a: 1}
+  coloredRenderers:
+  - {fileID: 3312265289154732936}
+  - {fileID: 7279676540051526245}
 --- !u!54 &3113940760747693854
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
+using System.Linq;
 
 public class PathGrid : MonoBehaviour
 {
@@ -10,11 +13,11 @@ public class PathGrid : MonoBehaviour
     [SerializeField] protected LayerMask worldLayer;
 
     private bool[,] grid;
-    private Dictionary<int, PathNode> path;
+    private Dictionary<int, PathNode> graph;
     private LinkedList<(int, int)> queue;
 
     private void OnEnable() {
-        path = new Dictionary<int, PathNode>();
+        graph = new Dictionary<int, PathNode>();
         queue = new LinkedList<(int, int)>();
         int mw = radius * 2 + 1;
         int mh = radius * 2 + 1;
@@ -101,20 +104,20 @@ public class PathGrid : MonoBehaviour
     }
 
     public Dictionary<int, PathNode> GetReachable(int i, int j, int d) {
-        path.Clear();
+        graph.Clear();
         queue.Clear();
 
         PathNode node = new PathNode(i, j, -1, 0, radius);
         queue.AddFirst((0, node.id));
-        path.Add(node.id, node);
+        graph.Add(node.id, node);
         while(queue.Count > 0) {
             int id = queue.First.Value.Item2;
             queue.RemoveFirst();
-            node = path[id];
+            node = graph[id];
             if (node.visited)
                 continue;
             node.visited = true;
-            path[id] = node;
+            graph[id] = node;
             if (node.d == d)
                 continue;
             PathfindingTryAdd(new PathNode(node.i + 1, node.j, node.id, node.d + 1, radius));
@@ -122,18 +125,18 @@ public class PathGrid : MonoBehaviour
             PathfindingTryAdd(new PathNode(node.i, node.j + 1, node.id, node.d + 1, radius));
             PathfindingTryAdd(new PathNode(node.i, node.j - 1, node.id, node.d + 1, radius));
         }
-        return path;
+        return graph;
     }
 
     private void PathfindingTryAdd(PathNode node) {
         if (!grid[node.i, node.j])
             return;
-        if (path.ContainsKey(node.id)) {
-            PathNode node2 = path[node.id];
+        if (graph.ContainsKey(node.id)) {
+            PathNode node2 = graph[node.id];
             if (node2.visited || node.d >= node2.d)
                 return;
         }
-        path[node.id] = node;
+        graph[node.id] = node;
         if (queue.Count == 0)
             queue.AddFirst((node.d, node.id));
         else {
@@ -145,7 +148,6 @@ public class PathGrid : MonoBehaviour
                 queue.AddAfter(q, (node.d, node.id));
         }
     }
-
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.green;

@@ -103,6 +103,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void NotifyLost(Unit.Team team) {
+        if (gameObject == null)
+            return;
         if (team == Unit.Team.sheriff) {
             winScreen.SetActive(true);
             state = State.Stopped;

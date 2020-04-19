@@ -40,19 +40,20 @@ public class Unit : MonoBehaviour
     }
 
     public IEnumerator Act(bool inCombat) {
+        CameraController.active.FocusOn(transform);
+        energy = actions;
         if (team == Team.bandit) {
             UnitUI.active.Show(this);
-            energy = actions;
             while (energy > 0)
                 yield return null;
-            UnitUI.active.gameObject.SetActive(false);
+            UnitUI.active.Hide();
         } else if (team == Team.sheriff) {
             if (!inCombat) {
                 foreach(Unit u in GameManager.activeGM.EnumerateEnemies(team)) {
                     RaycastHit hit;
                     Vector3 dir = ( u.transform.position - transform.position).normalized;
-                    if(Physics.Raycast(transform.position + dir * 0.5f + transform.up * 1.8f, dir, out hit, sight)) {
-                        if (hit.collider.gameObject == u.gameObject) {
+                    if(Physics.Raycast(transform.position + dir * 0.5f + transform.up * 1.5f, dir, out hit, sight)) {
+                        if (hit.rigidbody?.gameObject == u.gameObject) {
                             GameManager.activeGM.NotifyCombat();
                             inCombat = true;
                             break;
@@ -62,10 +63,16 @@ public class Unit : MonoBehaviour
             }
             yield return null;
             if (inCombat) {
-                //TODO: Move and Shoot
+                //TODO: Move
+                energy = -1;
+                yield return new WaitForSeconds(0.5f);
+                while(energy > 0)
+                    yield return null;
+                //TODO: Shoot
             }
         } else if (team == Team.leader) {
             //TODO: maybe start hanging at some point?
+            //TODO: maybe join the bandits at some point?
         }
     }
 

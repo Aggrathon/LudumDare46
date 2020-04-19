@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController active { get; protected set; }
+
     public CinemachineVirtualCamera topCamera;
     public CinemachineVirtualCamera shoulderCamera;
     public CinemachineBrain cameraBrain;
@@ -32,6 +34,7 @@ public class CameraController : MonoBehaviour
         topCamera.Follow = target;
         shoulderCamera.Follow = target;
         ActivateTop();
+        active = this;
     }
 
     void Update() {
@@ -55,8 +58,13 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    public void FocusOn(Transform tracker) {
+        activeUnit = tracker;
+        ActivateTop();
+    }
+
     public void ActivateShoulder() {
-        target.position = activeUnit.position;
+        shoulderCamera.Follow = activeUnit;
         shoulderCamera.transform.rotation = Quaternion.Euler(0f, topCamera.transform.rotation.eulerAngles.y, 0f);
         topCamera.Priority = 0;
         shoulderCamera.Priority = 10;

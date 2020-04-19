@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
         state = State.Setup;
     }
 
+    private void OnDestroy() {
+        units.Clear();
+    }
+
     public void RegisterUnit(Unit unit) {
         if (state == State.Setup && unit.team == Unit.Team.bandit) {
             state = State.PreCombat;
@@ -39,11 +43,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void DeregisterUnit(Unit unit) {
-        units.Remove(unit);
-        foreach(var u in units)
-            if (u.team == unit.team)
-                return;
-        NotifyLost(unit.team);
+        if (units.Remove(unit)) {
+            foreach(var u in units)
+                if (u.team == unit.team)
+                    return;
+            NotifyLost(unit.team);
+        }
     }
 
     public IEnumerable<Unit>EnumerateEnemies(Unit.Team team) {
@@ -100,20 +105,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void NotifyLost(Unit.Team team) {
-        if (gameObject == null)
-            return;
         if (team == Unit.Team.sheriff) {
             state = State.Stopped;
-            if (winScreen) {
-                winScreen.SetActive(true);
-                StopAllCoroutines();
-            }
+            winScreen.SetActive(true);
+            StopAllCoroutines();
         } else if (team == Unit.Team.bandit || team == Unit.Team.leader) {
             state = State.Stopped;
-            if (looseScreen) {
-                looseScreen.SetActive(true);
-                StopAllCoroutines();
-            }
+            looseScreen.SetActive(true);
+            StopAllCoroutines();
         }
     }
 }

@@ -65,3 +65,4 @@ crashlytics-build.properties
 
 # OWN
 Assets/Scenes/*/
+*.blend1*

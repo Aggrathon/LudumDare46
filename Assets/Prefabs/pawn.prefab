@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7737364734773793278}
   - component: {fileID: 3806278193166002961}
   - component: {fileID: 5608813499354949132}
+  - component: {fileID: 6930864944823314032}
   - component: {fileID: 3113940760747693854}
   m_Layer: 0
   m_Name: pawn
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9461cc059e2d9c4dbb990983dd94f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 10
   ui: {fileID: 7369484180297369505}
 --- !u!114 &3806278193166002961
 MonoBehaviour:
@@ -87,6 +88,26 @@ MonoBehaviour:
   coloredRenderers:
   - {fileID: 3312265289154732936}
   - {fileID: 7279676540051526245}
+--- !u!114 &6930864944823314032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318463144446754415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe18b9c1ac3f124ba9845ed900defde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 20
+  type: 3
+  maxAmmo: 1
+  shots: 1
+  damage: 2
+  variance: 0
+  attackHeight: 1.5
+  attackStart: 0.45
 --- !u!54 &3113940760747693854
 Rigidbody:
   m_ObjectHideFlags: 0

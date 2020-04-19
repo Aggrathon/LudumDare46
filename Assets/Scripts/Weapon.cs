@@ -1,0 +1,231 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class Weapon : MonoBehaviour
+{
+
+    public enum Type {
+        None,
+        Revolver,
+        Blunderbuss,
+        Rifle,
+        Knife,
+        Axe,
+        Melee,
+        Bow,
+        Dynamite
+    }
+    
+    public float range = 20f;
+    public Type type = Type.Rifle;
+    public int maxAmmo = 1;
+    int ammo;
+    public int shots = 1;
+    public int damage = 2;
+
+    public float variance = 0f;
+
+    public float attackHeight = 1.5f;
+    public float attackStart = 0.5f;
+
+    private void Start() {
+        ammo = maxAmmo;
+    }
+
+    public void AppendStatus(System.Text.StringBuilder sb) {
+        switch(type) {
+            case Type.None:
+                sb.Append("Hands are tied");
+                break;
+            case Type.Revolver:
+                sb.Append("Revolver: ").Append(ammo).Append(" / ").Append(maxAmmo);
+                break;
+            case Type.Blunderbuss:
+                sb.Append("Blunderbuss: ").Append(ammo).Append(" / ").Append(maxAmmo);
+                break;
+            case Type.Rifle:
+                sb.Append("Rifle");
+                break;
+            case Type.Axe:
+                sb.Append("Axe");
+                break;
+            case Type.Knife:
+                sb.Append("Knives");
+                break;
+            case Type.Melee:
+                sb.Append("Brawler");
+                break;
+            case Type.Bow:
+                sb.Append("Bow");
+                break;
+            case Type.Dynamite:
+                sb.Append("Dynamite: ").Append(ammo);
+                break;
+            default:
+                sb.Append("Unknown Weapon!");
+                break;
+        }
+    }
+
+    public IEnumerable<string> GetActions() {
+        switch(type) {
+            case Type.Revolver:
+                if (ammo > 0)
+                    yield return "Shoot Once";
+                if (ammo > 1)
+                    yield return "Shoot Twice";
+                if (ammo > 2)
+                    yield return "Shoot Thrice";
+                if (ammo < maxAmmo)
+                    yield return "Reload";
+                break;
+            case Type.Blunderbuss:
+                if (ammo > 0)
+                    yield return "Shoot";
+                if (ammo < maxAmmo)
+                    yield return "Reload";
+                break;
+            case Type.Rifle:
+                yield return "Shoot";
+                break;
+            case Type.Bow:
+                yield return "Shoot";
+                break;
+            case Type.Axe:
+                yield return "Chop";
+                break;
+            case Type.Knife:
+                yield return "Slice";
+                yield return "Stab";
+                break;
+            case Type.Melee:
+                yield return "Punch";
+                yield return "Kick";
+                break;
+            case Type.Dynamite:
+                yield return "Punch";
+                yield return "Throw Dynamite";
+                break;
+        }
+    }
+
+    public void StartAction(int index, System.Action<int> callback) {
+        StopAllCoroutines();
+        switch(type) {
+            case Type.Revolver:
+                if (index > ammo || index == 4) {
+                    ammo = maxAmmo;
+                    callback(1);
+                } else {
+                    shots = index;
+                    CameraController.active.ActivateShoulder();
+                    StartCoroutine(SelectAttackTarget(type, callback));
+                }
+                break;
+            case Type.Blunderbuss:
+                if (ammo > 0 && index == 1) {
+                    StartCoroutine(SelectAttackTarget(type, callback));
+                } else {
+                    ammo = maxAmmo;
+                    callback(1);
+                }
+                break;
+            case Type.Rifle:
+            case Type.Bow:
+                CameraController.active.ActivateShoulder();
+                StartCoroutine(SelectAttackTarget(type, callback));
+                break;
+            case Type.Melee:
+            case Type.Knife:
+            case Type.Axe:
+                StartCoroutine(SelectAttackTarget(type, callback));
+                break;
+            case Type.Dynamite:
+                if (index == 1) {
+                    StartCoroutine(SelectAttackTarget(type, callback));
+                } else {
+                    StartCoroutine(SelectAttackTarget(Type.Melee, callback));
+                }
+                break;
+        }
+    }
+
+    IEnumerator SelectAttackTarget(Type type, System.Action<int> callback) {
+        UnitUI.active.ShowAimHint();
+        Vector3 target;
+        while (true) {
+            yield return null;
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject()) {
+                RaycastHit hit;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, 100f))
+                    target = hit.point;
+                else
+                    target = ray.GetPoint(100f);
+                break;
+            }
+        }
+        switch(type) {
+            case Type.None:
+                Debug.LogError("This should not happen!");
+                break;
+            case Type.Revolver:
+                Utils.print("Attacked", target);
+                for (int i = 0; i < shots; i++)
+                {
+                    ammo--;
+                    var point = transform.position;
+                    point.y += attackHeight;
+                    var dir = target - point;
+                    dir.Normalize();
+                    point += dir * attackStart;
+                    dir += UnityEngine.Random.insideUnitSphere * variance;
+                    RaycastHit hit;
+                    Ray ray = new Ray(point, dir);
+                    Health h = null;
+                    if (Physics.Raycast(ray, out hit, range)) 
+                        h = hit.rigidbody?.GetComponent<Health>();
+                    else
+                        hit.point = ray.GetPoint(range);
+                    //TODO: shooting FX from point to hit.point
+                    yield return new WaitForSeconds(0.1f);
+                    if (h != null)
+                        h.health -= damage;
+                    yield return new WaitForSeconds(0.3f / shots);
+                }
+                break;
+            case Type.Blunderbuss:
+                Debug.LogError("Blunderbuss not implemented");
+                break;
+            case Type.Rifle:
+            case Type.Bow:
+                Debug.LogError("Rifle not implemented");
+                break;
+            case Type.Axe:
+            case Type.Knife:
+            case Type.Melee:
+                Debug.LogError("Melee not implemented");
+                break;
+            case Type.Dynamite:
+                Debug.LogError("Dynamite not implemented");
+                break;
+            default:
+                Debug.LogError("Unknown Weapon!");
+                break;
+        }
+        //TODO: Implement more weapons for players
+        callback(2);
+    }
+
+    public void CancelAction() {
+        UnitUI.active.HideAimHint();
+        StopAllCoroutines();
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.black;
+        Gizmos.DrawSphere(transform.position + new Vector3(attackStart, attackHeight, 0f), 0.1f);
+    }
+}

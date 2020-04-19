@@ -15,6 +15,8 @@ public class UnitUI : MonoBehaviour
     public TextMeshProUGUI descText;
     public Button actionButton;
     [SerializeField] protected Button moveButton;
+    public GameObject attackText;
+    public GameObject rangeFinder;
 
     List<Button> buttons;
     private List<Button> moveButtons;
@@ -41,11 +43,23 @@ public class UnitUI : MonoBehaviour
         StringBuilder sb = new StringBuilder();
         sb.Append("   Actions: ").Append(unit.energy).Append(" / ").Append(unit.actions);
         sb.Append("\n   Health: ").Append(unit.health.health).Append(unit.health.maxHealth);
-        sb.Append("\n   ").Append("[WEAPON]");
+        sb.Append("\n   ");
+        unit.weapon.AppendStatus(sb);
         descText.text = sb.ToString();
         int index = 1;
-        for (; index < 0; index++) {
-            //TODO: The other buttons
+        foreach (var act in unit.weapon.GetActions()) {
+            int i = index;
+            SetupButton(i, act, () => {
+                HideMoveGrid();
+                unit.weapon.StartAction(i, (en) => {
+                    unit.energy -= en;
+                    if (unit.energy > 0)
+                        Show(unit);
+                    else
+                        Hide();
+                });
+            });
+            index++;
         }
         for (; index < buttons.Count - 1; index++)
             buttons[index].gameObject.SetActive(false);
@@ -63,10 +77,14 @@ public class UnitUI : MonoBehaviour
     public void Hide() {
         gameObject.SetActive(false);
         HideMoveGrid();
+        HideAimHint();
     }
 
     
     void ShowMoveGrid() {
+        HideAimHint();
+        unit.weapon.CancelAction();
+        CameraController.active.ActivateTop();
         var graph = PathGrid.activeGrid.GetReachable(unit.blocker.i, unit.blocker.j, unit.movement);
         var grid = PathGrid.activeGrid;
         while (moveButtons.Count < graph.Count)
@@ -99,10 +117,23 @@ public class UnitUI : MonoBehaviour
 
     void SkipTurn() {
         unit.energy = -1;
+        unit.weapon.CancelAction();
         Hide();
     }
 
     public void HideMoveGrid() {
         moveButton.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void ShowAimHint() {
+        attackText.SetActive(true);
+        rangeFinder.transform.localScale = new Vector3(unit.weapon.range, 1f, unit.weapon.range);
+        rangeFinder.transform.position = unit.transform.position;
+        rangeFinder.SetActive(true);
+    }
+
+    public void HideAimHint() {
+        attackText.SetActive(false);
+        rangeFinder.SetActive(false);
     }
 }

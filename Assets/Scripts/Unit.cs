@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Blocker))]
+[RequireComponent(typeof(Weapon))]
 public class Unit : MonoBehaviour
 {
 
@@ -18,21 +19,22 @@ public class Unit : MonoBehaviour
 
     public int speed = 10;
     public int movement = 5;
-    [Range(0f, 1f)] public float aggresiveness = 0.5f;
+    [Range(0.1f, 0.9f)] public float aggresiveness = 0.5f;
     public int actions = 2;
     public float sight = 10f;
     public Color color = new Color(1f, 0.8f, 0.5f);
 
-    [SerializeField] Renderer[] coloredRenderers;
+    [SerializeField] protected Renderer[] coloredRenderers;
 
     [System.NonSerialized] public int energy;
     [System.NonSerialized] public int priority;
 
     public Health health { get; protected set; }
     public Blocker blocker { get; protected set; }
-    public object weapon { get; protected set; }
+    public Weapon weapon { get; protected set; }
 
     private void OnEnable() {
+        weapon = GetComponent<Weapon>();
         health = GetComponent<Health>();
         blocker = GetComponent<Blocker>();
         GameManager.activeGM.RegisterUnit(this);
@@ -52,6 +54,7 @@ public class Unit : MonoBehaviour
             while (energy > 0)
                 yield return null;
             UnitUI.active.Hide();
+            weapon.CancelAction();
         } else if (team == Team.sheriff) {
             if (!inCombat) {
                 foreach(Unit u in GameManager.activeGM.EnumerateEnemies(team)) {

@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
             winScreen.SetActive(true);
             state = State.Stopped;
             StopAllCoroutines();
-        } else if (team == Unit.Team.bandit) {
+        } else if (team == Unit.Team.bandit || team == Unit.Team.leader) {
             looseScreen.SetActive(true);
             state = State.Stopped;
             StopAllCoroutines();

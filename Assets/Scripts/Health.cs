@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 using System.Linq;
 
 public class Health : MonoBehaviour
 {
     public int maxHealth = 2;
     int _health;
-    public TextMeshPro ui;
+    public Image ui;
 
     public int health { 
         get {
@@ -17,13 +17,15 @@ public class Health : MonoBehaviour
         set {
             if (value <= 0)
                 Destroy(gameObject);
-            else if (value != _health) {
+            else if (value != _health){
                 if (value > maxHealth)
                     _health = maxHealth;
                 else
                     _health = value;
-                if (ui)
-                    ui.text = string.Concat(Enumerable.Repeat("I", value));;
+                if (ui != null) {
+                    ui.gameObject.SetActive(true);
+                    ui.fillAmount = (float)_health / (float)maxHealth;
+                }
             }
         }
     }

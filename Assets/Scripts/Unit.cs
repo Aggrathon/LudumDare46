@@ -133,6 +133,8 @@ public class Unit : MonoBehaviour
                     yield return null;
                 UnitUI.active.Hide();
                 weapon.CancelAction();
+            } else {
+                health.health--;
             }
         }
     }

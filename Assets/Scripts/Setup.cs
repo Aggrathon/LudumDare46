@@ -11,6 +11,10 @@ public class Setup : MonoBehaviour
     public List<Unit> possibleBandits;
     public Transform infoPanel;
 
+    private void Awake() {
+        transform.GetChild(0).gameObject.SetActive(true);
+    }
+    
     private void Start() {
         while (infoPanel.parent.childCount < possibleBandits.Count) {
             Instantiate(infoPanel, infoPanel.parent);

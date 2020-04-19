@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Health))]
@@ -23,6 +24,8 @@ public class Unit : MonoBehaviour
     public int actions = 2;
     public float sight = 10f;
     public Color color = new Color(1f, 0.8f, 0.5f);
+    public float approxHeight = 1.8f;
+    public float approxRadius = 0.45f;
 
     [SerializeField] protected Renderer[] coloredRenderers;
 
@@ -71,12 +74,50 @@ public class Unit : MonoBehaviour
             }
             yield return null;
             if (inCombat) {
-                //TODO: Move
-                energy = -1;
-                yield return new WaitForSeconds(0.5f);
+                var graph = PathGrid.activeGrid.GetReachable(blocker.i, blocker.j, movement);
+                float bestValue = float.MinValue;
+                Vector3 bestTarget = Vector3.zero;
+                PathGrid.PathNode bestNode = graph.ElementAt(0).Value;
+                foreach (var kv in graph.AsEnumerable()) {
+                    Vector3 secondTarget = Vector3.zero;
+                    float secondValue = float.MinValue;
+                    Vector3 target = PathGrid.activeGrid.IndexToVector(kv.Value.i, kv.Value.j);
+                    float totalValue = 0f;
+                    foreach(var en in GameManager.activeGM.EnumerateEnemies(team)) {
+                        float defVal = Utils.Danger(
+                            en.transform.position,
+                            en.weapon.attackHeight,
+                            en.weapon.attackStart,
+                            en.weapon.range,
+                            target,
+                            approxHeight,
+                            approxRadius).Item1;
+                        (float offVal, Vector3 tmp) = Utils.Danger(
+                            target,
+                            weapon.attackHeight,
+                            weapon.attackStart,
+                            weapon.range,
+                            en.transform.position,
+                            en.approxHeight,
+                            en.approxRadius);
+                        totalValue += defVal * (1f - aggresiveness) + offVal * aggresiveness;
+                        if (offVal > secondValue) {
+                            secondTarget = tmp;
+                            secondValue = offVal;
+                        }
+                    }
+                    if (totalValue > bestValue) {
+                        bestValue = totalValue;
+                        bestTarget = secondTarget;
+                        bestNode = kv.Value;
+                    }
+                    yield return null;
+                }
+                energy = 1;
+                blocker.MovePath(graph, bestNode, () => { this.energy = -1; });
                 while(energy > 0)
                     yield return null;
-                //TODO: Shoot
+                yield return weapon.AttackTarget(bestTarget, weapon.type);
             }
         } else if (team == Team.leader) {
             //TODO: maybe start hanging at some point?
@@ -87,5 +128,9 @@ public class Unit : MonoBehaviour
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + Vector3.up*0.01f, sight);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * approxHeight / 2, approxRadius);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * approxRadius, approxRadius);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * (approxHeight - approxRadius), approxRadius);
     }
 }

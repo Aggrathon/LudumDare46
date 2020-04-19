@@ -170,6 +170,13 @@ public class Weapon : MonoBehaviour
                 break;
             }
         }
+        yield return AttackTarget(target, type);
+        GameManager.activeGM.NotifyCombat();
+        //TODO: Implement more weapons for players
+        callback(2);
+    }
+
+    public IEnumerator AttackTarget(Vector3 target, Type type) {
         switch(type) {
             case Type.None:
                 Debug.LogError("This should not happen!");
@@ -198,9 +205,6 @@ public class Weapon : MonoBehaviour
                 Debug.LogError("Unknown Weapon!");
                 break;
         }
-        GameManager.activeGM.NotifyCombat();
-        //TODO: Implement more weapons for players
-        callback(2);
     }
 
     IEnumerator ShootGun(Vector3 target, float variance, bool sound, float wait) {

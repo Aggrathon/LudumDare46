@@ -42,7 +42,7 @@ public class UnitUI : MonoBehaviour
         nameText.text = unit.name;
         StringBuilder sb = new StringBuilder();
         sb.Append("   Actions: ").Append(unit.energy).Append(" / ").Append(unit.actions);
-        sb.Append("\n   Health: ").Append(unit.health.health).Append(unit.health.maxHealth);
+        sb.Append("\n   Health: ").Append(unit.health.health).Append(" / ").Append(unit.health.maxHealth);
         sb.Append("\n   ");
         unit.weapon.AppendStatus(sb);
         descText.text = sb.ToString();

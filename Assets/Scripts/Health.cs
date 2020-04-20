@@ -30,6 +30,10 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void Damage(int dmg) {
+        health -= dmg;
+    }
+
     private void OnEnable() {
         health = maxHealth;
     }

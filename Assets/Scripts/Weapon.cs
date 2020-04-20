@@ -232,7 +232,15 @@ public class Weapon : MonoBehaviour
             case Type.Axe:
             case Type.Knife:
             case Type.Melee:
-                Debug.LogError("Melee not implemented");
+                var dir = (target - transform.position).normalized;
+                var point = transform.position + dir * attackStart;
+                point.y += attackHeight;
+                if (attackSound != null)
+                    FXManager.active.PlayAudio(point, attackSound);
+                var wfs = new WaitForSeconds(0.2f);
+                RaycastHit hit;
+                if (Physics.Raycast(point, target - point, out hit, range)) 
+                    hit.rigidbody?.GetComponent<Health>()?.Damage(damage);
                 break;
             case Type.Dynamite:
                 Debug.LogError("Dynamite not implemented");

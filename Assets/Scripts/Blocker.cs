@@ -88,6 +88,7 @@ public class Blocker : MonoBehaviour
                 if (i < moves.Count) {
                     move = moves[i];
                     var dir = move - transform.position;
+                    dir.y = 0f;
                     transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
                     d2 = dir.sqrMagnitude;
                 } else

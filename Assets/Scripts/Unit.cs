@@ -20,7 +20,7 @@ public class Unit : MonoBehaviour
 
     public int speed = 10;
     public int movement = 5;
-    [Range(0.1f, 0.9f)] public float aggresiveness = 0.5f;
+    [Range(0.4f, 1.1f)] public float aggresiveness = 0.5f;
     public int actions = 2;
     public float sight = 10f;
     public Color color = new Color(1f, 0.8f, 0.5f);
@@ -91,7 +91,7 @@ public class Unit : MonoBehaviour
                         (float offVal, Vector3 tmp) = Utils.Danger(this, en, target, en.transform.position);
                         if (offVal > 0.3f)
                             offVal = offVal * 0.75f + (1f - (float)en.health.health / (float)en.health.maxHealth) * 0.5f;
-                        totalValue += defVal * (1f - aggresiveness) + offVal * aggresiveness;
+                        totalValue += offVal * aggresiveness - defVal * (1f - aggresiveness);
                         if (offVal > secondValue) {
                             secondTarget = tmp;
                             secondValue = offVal;
@@ -104,11 +104,14 @@ public class Unit : MonoBehaviour
                     }
                     yield return null;
                 }
-                energy = 600;
-                blocker.MovePath(graph, bestNode, () => { this.energy = -1; });
-                while(energy > 0) {
-                    yield return null;
-                    energy--;
+                if (bestNode.i != blocker.i || bestNode.j != blocker.j)
+                {
+                    energy = 400;
+                    blocker.MovePath(graph, bestNode, () => { this.energy = -1; });
+                    while(energy > 0) {
+                        yield return null;
+                        energy--;
+                    }
                 }
                 yield return weapon.AttackTarget(bestTarget, weapon.type);
             }

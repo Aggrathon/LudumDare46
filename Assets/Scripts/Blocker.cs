@@ -85,7 +85,13 @@ public class Blocker : MonoBehaviour
                     FXManager.active.PlayAudio(move, stepSound);
                 prev = moves[i];
                 i++;
-                continue;
+                if (i < moves.Count) {
+                    move = moves[i];
+                    var dir = move - transform.position;
+                    transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+                    d2 = dir.sqrMagnitude;
+                } else
+                    break;
             }
             move.y = transform.position.y;
             move = Vector3.SmoothDamp(transform.position, move, ref vel, 0.3f/moveSpeed, moveSpeed);

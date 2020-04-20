@@ -212,6 +212,10 @@ public class Weapon : MonoBehaviour
     }
 
     public IEnumerator AttackTarget(Vector3 target, Type type) {
+        var dir = target - transform.position;
+        dir.y = 0;
+        dir.Normalize();
+        transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
         switch(type) {
             case Type.None:
                 Debug.LogError("This should not happen!");
@@ -232,7 +236,6 @@ public class Weapon : MonoBehaviour
             case Type.Axe:
             case Type.Knife:
             case Type.Melee:
-                var dir = (target - transform.position).normalized;
                 var point = transform.position + dir * attackStart;
                 point.y += attackHeight;
                 if (attackSound != null)

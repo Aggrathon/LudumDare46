@@ -7,7 +7,7 @@
 
 WKAM is a XCOM-inspired gamejam game in a western setting.
 Play the game [in your browser](https://aggrathon.github.io/LudumDare46/)
-or check out the [Ludum Dare entry](https://ldjam.com/events/ludum-dare/46/wkam-western-keep-it-alive-mission)
+or check out the [Ludum Dare entry](https://ldjam.com/events/ludum-dare/46/wkam-western-keep-it-alive-mission).
 
 ## Software Used
 

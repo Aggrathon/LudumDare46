@@ -277,7 +277,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1848,21 +1848,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2670,21 +2658,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7950,21 +7926,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8715,7 +8679,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -8829,21 +8793,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10355,7 +10307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723288974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.002, z: 0}
+  m_LocalPosition: {x: 0, y: 0.004, z: 0}
   m_LocalScale: {x: 150, y: 1, z: 150}
   m_Children: []
   m_Father: {fileID: 1202067757}
@@ -11888,7 +11840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903210374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.004, z: 0}
+  m_LocalPosition: {x: 0, y: 0.008, z: 0}
   m_LocalScale: {x: 20, y: 1, z: 20}
   m_Children: []
   m_Father: {fileID: 1202067757}
@@ -11930,7 +11882,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -12366,21 +12318,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12440,21 +12380,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12707,7 +12635,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -13707,21 +13635,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14036,21 +13952,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14878,21 +14782,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (15)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15254,7 +15146,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -15741,7 +15633,7 @@ MonoBehaviour:
   overCamera: {fileID: 1666397120}
   cameraBrain: {fileID: 701279698}
   activeUnit: {fileID: 1364398315}
-  turnSpeed: 0.5
+  turnSpeed: 0.75
   moveSpeed: 10
 --- !u!4 &1364398315
 Transform:
@@ -16573,7 +16465,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -16657,7 +16549,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -16913,7 +16805,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -16963,21 +16855,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17275,7 +17155,7 @@ MeshRenderer:
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -17766,21 +17646,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (13)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18922,21 +18790,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20341,21 +20197,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20482,7 +20326,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -20689,21 +20533,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20994,7 +20826,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -21357,21 +21189,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21644,21 +21464,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958379544}
     m_Modifications:
-    - target: {fileID: 1923903445727685063, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_Name
       value: House
-      objectReference: {fileID: 0}
-    - target: {fileID: 2682727511060967259, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341265715343911984, guid: 836be63c122f87a4989241a408321eb4, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7943660361386351055, guid: 836be63c122f87a4989241a408321eb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21863,6 +21671,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1202067757}
     m_Modifications:
+    - target: {fileID: 8231954338205026036, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
+      propertyPath: m_LightmapParameters
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8231954338205026038, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
       propertyPath: m_LocalScale.y
       value: 2.3
@@ -21923,6 +21735,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8231954339151449891, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
+      propertyPath: m_LightmapParameters
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8231954339294793681, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
       propertyPath: m_LocalScale.y
       value: 2.3
@@ -21935,6 +21751,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 8231954339294793687, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
+      propertyPath: m_LightmapParameters
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231954339409113071, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
+      propertyPath: m_LightmapParameters
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231954339447599989, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
+      propertyPath: m_LightmapParameters
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8231954339447599991, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.8
@@ -21947,6 +21775,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 8231954339497754147, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
+      propertyPath: m_LightmapParameters
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8231954339497754173, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
       propertyPath: m_LocalScale.y
       value: 2.3
@@ -21958,6 +21790,10 @@ PrefabInstance:
     - target: {fileID: 8231954339497754173, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231954339623023645, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
+      propertyPath: m_LightmapParameters
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2a3eb7de074dec469c9f1ab8e3c588f, type: 3}
